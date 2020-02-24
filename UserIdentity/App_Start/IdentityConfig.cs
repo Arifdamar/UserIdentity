@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-[assembly: OwinStartup(typeof(UserIdentity.App_Start.IdentityConfig))]
+[assembly: OwinStartup(typeof(UserIdentity.IdentityConfig))]
 
-namespace UserIdentity.App_Start
+namespace UserIdentity
 {
     public class IdentityConfig
     {
