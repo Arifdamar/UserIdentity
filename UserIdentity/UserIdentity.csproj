@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="Identity\ApplicationRole.cs" />
     <Compile Include="Identity\ApplicationUser.cs" />
+    <Compile Include="Identity\CustomPasswordValidator.cs" />
     <Compile Include="Identity\IdentityDataContext.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
