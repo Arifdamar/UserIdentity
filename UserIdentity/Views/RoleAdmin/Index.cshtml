@@ -23,13 +23,22 @@
         {
             foreach (var role in Model)
             {
-            <tr>
-                <td>@role.Id</td>
-                <td>@role.Name</td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>@role.Id</td>
+                    <td>@role.Name</td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "RoleAdmin", new { id = role.Id }))
+                        {
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Delete
+                            </button>
+                            @Html.ActionLink("Edit", "Edit", new { id = role.Id }, new { @class = "btn btn-primary btn-sm" })
+                        }
+
+                    </td>
+                </tr>
             }
         }
     </table>
 </div>
-
+@Html.ActionLink("Create", "Create", null, new { @class = "btn btn-warning btn-lg" })
