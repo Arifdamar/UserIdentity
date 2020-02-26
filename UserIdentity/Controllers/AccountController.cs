@@ -20,6 +20,7 @@ namespace UserIdentity.Controllers
         {
             var userStore = new UserStore<ApplicationUser>(new IdentityDataContext());
             userManager = new UserManager<ApplicationUser>(userStore);
+
             userManager.PasswordValidator = new CustomPasswordValidator()
             {
                 RequireDigit = true,
@@ -42,6 +43,11 @@ namespace UserIdentity.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error", new string[] { "You don't have permission to view this page" });
+            }
+
             ViewBag.returnUrl = returnUrl;
             return View();
         }
@@ -103,6 +109,7 @@ namespace UserIdentity.Controllers
 
                 if (result.Succeeded)
                 {
+                    userManager.AddToRole(user.Id, "User");
                     return RedirectToAction("Login");
                 }
                 else
